@@ -95,3 +95,23 @@ ggplot(data = spendanalysis ,aes(x=Category,y=PercentChange,fill=factor(IsMax)))
   
     coord_flip()
   
+cmasNonTotal$Year<-as.factor(cmasNonTotal$Year)
+
+ggplot(
+    data = cmasNonTotal ,
+    mapping = aes(x=Region,y=SpendingAmount) )+
+  geom_bar(data=cmasNonTotal, stat = "identity",group=factor(cmasNonTotal$Year),position = "dodge") +
+  facet_wrap(~Category,ncol = 1) +
+  coord_flip()
+
+
+
+ggplot(
+  data = cmasNonTotal
+  )+
+  geom_bar(data=cmasNonTotal,mapping = aes(x=Region,y=SpendingAmount,group=Year,fill=Year), stat = "identity",position = "dodge") +
+ 
+  coord_flip() +
+  facet_wrap(~Category,ncol = 1)
+
+
